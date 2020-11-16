@@ -7,6 +7,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   ScrollView,
+  ActivityIndicator
 } from 'react-native';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
@@ -32,69 +33,64 @@ const ListingScreen = (navData) => {
   }
 
   return (
-    <KeyboardAvoidingView
-      behavior='padding'
-      keyboardVerticalOffset={100}
-      style={{ flex: 1 }}
-    >
-      <ScrollView>
-        <Formik
-          initialValues={{
-            address: '',
-          }}
-          validationSchema={formSchema}
-          onSubmit={(values) => {
-            dispatch(addressAction.fetchAddress(values))
-              .then((results) => {
-                setIsLoading(false);
-                setAddresses(results.Items);
-                console.log('results', results);
-              })
-              .catch((err) => {
-                setIsLoading(false);
-                console.log(err);
-              });
-          }}
-        >
-          {(props) => (
-            <View style={styles.container}>
-              <View style={styles.formGroup}>
-                <Text style={styles.label}>Enter Address</Text>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={props.handleChange('address')}
-                  onBlur={props.handleBlur('address')}
-                  value={props.values.address}
-                />
-                <Text style={styles.error}>
-                  {props.touched.address && props.errors.address}
-                </Text>
+    <ScrollView>
+      <Formik
+        initialValues={{
+          address: '',
+        }}
+        validationSchema={formSchema}
+        onSubmit={(values) => {
+          setIsLoading(true);
+          dispatch(addressAction.fetchAddress(values))
+            .then((results) => {
+              setIsLoading(false);
+              setAddresses(results.Items);
+              console.log('results', results);
+            })
+            .catch((err) => {
+              setIsLoading(false);
+              console.log(err);
+            });
+        }}
+      >
+        {(props) => (
+          <View style={styles.container}>
+            <View style={styles.formGroup}>
+              <Text style={styles.label}>Enter Address</Text>
+              <TextInput
+                style={styles.input}
+                onChangeText={props.handleChange('address')}
+                onBlur={props.handleBlur('address')}
+                value={props.values.address}
+              />
+              <Text style={styles.error}>
+                {props.touched.address && props.errors.address}
+              </Text>
 
-                <View style={styles.buttonContainer}>
-                  <Button title='Search' onPress={props.handleSubmit} />
-                </View>
-              </View>
-              <View>
-                {addresses.length > 0 ? (
-                  addresses.map((address) => (
-                    <View>
-                      <View style={styles.card}>
-                        <Text style={styles.text}>{address.Id}</Text>
-                        <Text style={styles.text}>{address.Text}</Text>
-                        <Text style={styles.text}>{address.Highligh}</Text>
-                        <Text style={styles.text}>{address.Description}</Text>
-                      </View>
-                    </View>
-                  ))
-                ) : (
-                  <Text>No Address</Text>
-                )}
+              <View style={styles.buttonContainer}>
+                <Button title='Search' onPress={props.handleSubmit} />
               </View>
             </View>
-          )}
-        </Formik>
-      </ScrollView>
-    </KeyboardAvoidingView>
+            <View>
+              {addresses.length > 0 ? (
+                addresses.map((address) => (
+                  <View>
+                    <View style={styles.card}>
+                      <Text style={styles.text}>{address.Id}</Text>
+                      <Text style={styles.text}>{address.Text}</Text>
+                      <Text style={styles.text}>{address.Highligh}</Text>
+                      <Text style={styles.text}>{address.Description}</Text>
+                    </View>
+                  </View>
+                ))
+              ) : (
+                <Text>No Address</Text>
+              )}
+            </View>
+          </View>
+        )}
+      </Formik>
+    </ScrollView>
   );
 };
 

@@ -27,12 +27,15 @@ const PaymentView = (props) => {
                     flex-direction: column;
                     height: 200px;
                     justify-content: space-around;
-                    background-color: #3D097F;
+                    background-color: #000076;
                     border-radius: 20px;
                     padding: 10px;
                     padding-top: 20px;
                     padding-bottom: 20px;
                     margin-bottom: 50px;
+                }
+                .new-color {
+                    background-color: #000076;
                 }
                 .card-element{
                     height: 100px;
@@ -64,11 +67,15 @@ const PaymentView = (props) => {
                         align-items: center;
                     }
                     .products-info{
-                        
-                        height: 150px;
+                        margin-top: 100px;
                         width: 100%;
                         padding: 20px;
                         text-align: center;
+                        font-size: 22px;
+                        font-weight: bold;
+                    }
+                    .products-info-text{
+                        font-size: 22px;
                     }
                     .card-errors{
                         color: red;
@@ -91,7 +98,7 @@ const PaymentView = (props) => {
                         <div class="products-info">
                             Amount: $${amount}
                         </div>
-                        <div>Provide Your card details below</div>
+                        <div class="products-info-text">Provide Your card details below</div>
                     </div>
                     <div class="row">
                         <label class="card-errors" id="card-errors"></label>
@@ -140,7 +147,7 @@ const PaymentView = (props) => {
                                 </div>
                             
                                 <div class="pay-btn">
-                                    <input type="submit" class="btn btn-info btn-lg" value="Pay Now" />
+                                    <input type="submit" class="btn btn-info btn-lg new-color" value="Pay Now" />
                                 </div>
                 
                         </form>

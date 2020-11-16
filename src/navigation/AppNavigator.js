@@ -18,7 +18,7 @@ function AppNavigator() {
         <Stack.Screen
           name='Listing'
           component={ListingScreen}
-          options={{ title: 'UK Address Listing' }}
+          options={{ title: 'UK Address Listing', headerLeft: null }}
         />
       </Stack.Navigator>
     </NavigationContainer>

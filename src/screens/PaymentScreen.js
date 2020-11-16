@@ -75,7 +75,7 @@ const PaymentScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingTop: 100 },
+  container: { flex: 1 },
   navigation: { flex: 2, backgroundColor: 'red' },
   body: {
     flex: 10,
