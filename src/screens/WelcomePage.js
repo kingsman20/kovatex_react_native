@@ -4,7 +4,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 const WelcomePage = (props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.textOne}> UK Address Verifier </Text>
+      <Text style={styles.textOne}> Address Verifier </Text>
       <Text style={styles.textTwo}> You have to pay to access the API</Text>
       <Text style={styles.textThree}>
         {' '}

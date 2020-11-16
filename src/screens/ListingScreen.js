@@ -45,7 +45,6 @@ const ListingScreen = (navData) => {
             .then((results) => {
               setIsLoading(false);
               setAddresses(results.Items);
-              console.log('results', results);
             })
             .catch((err) => {
               setIsLoading(false);
@@ -74,7 +73,7 @@ const ListingScreen = (navData) => {
             <View>
               {addresses.length > 0 ? (
                 addresses.map((address) => (
-                  <View>
+                  <View key={address.Id}>
                     <View style={styles.card}>
                       <Text style={styles.text}>{address.Id}</Text>
                       <Text style={styles.text}>{address.Text}</Text>

@@ -13,12 +13,12 @@ function AppNavigator() {
         <Stack.Screen
           name='Payment'
           component={PaymentScreen}
-          options={{ title: 'UK Address Verifier' }}
+          options={{ title: 'Address Verifier' }}
         />
         <Stack.Screen
           name='Listing'
           component={ListingScreen}
-          options={{ title: 'UK Address Listing', headerLeft: null }}
+          options={{ title: 'Address Listing', headerLeft: null }}
         />
       </Stack.Navigator>
     </NavigationContainer>
